@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: MIT
-pragma solidity >=0.4.0 <0.6.0; 
+pragma solidity >=0.4.0 <0.6.0;
 
 contract Election {
   //model candidate
@@ -10,11 +10,11 @@ contract Election {
   }
   // Store candidates
   //Fetch Candidate
-  mapping(unit => Candidate) public candidates;
+  mapping(uint => id) public candidates;
   //store candidates count
   uint public candidatesCount;
 
-  function Election ()public {
+  function Election () public {
 
   }
   function addCandidate (string _name) private {
