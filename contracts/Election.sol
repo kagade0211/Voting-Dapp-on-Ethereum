@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.4.11;
+pragma solidity ^0.5.16;
 
 contract Election {
   //model candidate
@@ -16,15 +16,15 @@ contract Election {
 // constructor defination in old version of solidity. In newer version you donot need to add function keyword and functionName
 //Constructor gets called automatically once contract is migrated on blockchain.
 //smart contract is in control of candidates addition. externally we cannot add candidate
-  function Election () public {
+  constructor() public {
     addCandidate("Candidate 1");
     addCandidate("Candidate 2");
   }
-  function addCandidate (string _name) private {
+  function addCandidate (string memory _name) private {
     //function is private so that noone will be able to add new candidate after deployment
     //candidesCount is increased first and is passed as uint which is id
     candidatesCount ++;
     //candidate is array and we are passing  candidateCount as array no.
-    candidates[candidatesCount] = Candidate(candidantesCount, _name,0);
+    candidates[candidatesCount] = Candidate(candidatesCount, _name,0);
   }
 }
