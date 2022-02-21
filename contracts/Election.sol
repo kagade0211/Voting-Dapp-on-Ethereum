@@ -2,7 +2,7 @@
 pragma solidity ^0.5.16;
 
 contract Election {
-  //model candidate
+  //model candidate using struct
   struct Candidate {
     uint id;
     string name;
@@ -11,7 +11,7 @@ contract Election {
   // Store candidates in mapping
   //Fetch Candidate
   mapping(uint => Candidate) public candidates;
-  //store candidates count
+  //store candidates count as we want to track no
   uint public candidatesCount;
 // constructor defination in old version of solidity. In newer version you donot need to add function keyword and functionName
 //Constructor gets called automatically once contract is migrated on blockchain.
