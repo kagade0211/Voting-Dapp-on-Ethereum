@@ -2,26 +2,32 @@ App = {
   web3Provider: null,
   contracts: {},
   account: '0x0',
+  // first initialise app
 
   init: function() {
     return App.initWeb3();
   },
-
-  initWeb3: function() {
+// initialise web3 to connect client side application to local blockchain.
+  initWeb3: function() { // this function initialises our connection of client application to local blockchain
     // TODO: refactor conditional
     if (typeof web3 !== 'undefined') {
-      // If a web3 instance is already provided by Meta Mask.
+      // If a web3 instance is already provided by Meta Mask. we get instance of
+      //web-3 attached to window through metamask. it turns chrome browser to web-3 browser which connect to 
+      //or ethreum blockchain conected browser.
+      //set this web3 provider from browser to applications web3 provider
       App.web3Provider = web3.currentProvider;
       web3 = new Web3(web3.currentProvider);
     } else {
-      // Specify default instance if no web3 instance provided
+      // Specify default instance (i.e. from local blockchain instance ) if no web3 instance (i.e. metamask) provided
       App.web3Provider = new Web3.providers.HttpProvider('http://localhost:7545');
       web3 = new Web3(App.web3Provider);
     }
     return App.initContract();
   },
-
+//initialise contract
   initContract: function() {
+    // this function loads contract in client side application so we can interact with it 
+    // load json file of election aertifact. use json for truffle contract
     $.getJSON("Election.json", function(election) {
       // Instantiate a new truffle contract from the artifact
       App.contracts.Election = TruffleContract(election);
@@ -77,6 +83,7 @@ App = {
 };
 
 $(function() {
+  //initialise app as soon as window loads
   $(window).load(function() {
     App.init();
   });
