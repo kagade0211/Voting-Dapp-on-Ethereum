@@ -27,7 +27,9 @@ App = {
 //initialise contract
   initContract: function() {
     // this function loads contract in client side application so we can interact with it 
-    // load json file of election aertifact. use json for truffle contract
+    // load json file of election artifact. use json to generate truffle contract
+    //getJSON works on election.json because we are using  the browser sync package  that comes with 
+    //truffle box (i.e. bs-config.json file in project folder) , it is configured to read files in build/contracts directory 
     $.getJSON("Election.json", function(election) {
       // Instantiate a new truffle contract from the artifact
       App.contracts.Election = TruffleContract(election);
