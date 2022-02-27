@@ -8,6 +8,8 @@ contract Election {
     string name;
     uint voteCount;
   }
+  //store Id has voted
+  mapping(address => bool ) public voters;
   // Store candidates in mapping
   //Fetch Candidate
   mapping(uint => Candidate) public candidates;
@@ -26,5 +28,14 @@ contract Election {
     candidatesCount ++;
     //candidate is array and we are passing  candidateCount as array no.
     candidates[candidatesCount] = Candidate(candidatesCount, _name,0);
+  }
+  function vote (unit _candidateId) public{
+    // record that voter has voted
+    voters[msg.sender] = true;
+
+    //update candidate vote count
+    candidates[_candidateId].voteCount ++;
+
+
   }
 }
