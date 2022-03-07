@@ -35,11 +35,11 @@ App = {
       App.contracts.Election = TruffleContract(election);
       // Connect provider to interact with contract
       App.contracts.Election.setProvider(App.web3Provider);
-
+      //
       return App.render();
     });
   },
-
+//render function layout all content on page. 1. display accounts connected to blockchain 2. list out candidates in election
   render: function() {
     var electionInstance;
     var loader = $("#loader");
@@ -48,7 +48,7 @@ App = {
     loader.show();
     content.hide();
 
-    // Load account data
+    // Load account data 
     web3.eth.getCoinbase(function(err, account) {
       if (err === null) {
         App.account = account;
