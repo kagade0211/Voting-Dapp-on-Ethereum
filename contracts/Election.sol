@@ -29,7 +29,7 @@ contract Election {
     //candidate is array and we are passing  candidateCount as array no.
     candidates[candidatesCount] = Candidate(candidatesCount, _name,0);
   }
-  function vote (uint _candidateId) public{
+  function vote (uint _candidateId) public {
     // record that voter has voted
     voters[msg.sender] = true;
 
