@@ -30,6 +30,15 @@ contract Election {
     candidates[candidatesCount] = Candidate(candidatesCount, _name,0);
   }
   function vote (uint _candidateId) public {
+    // conditions for vote that address has not voted before
+    //i.e. requires address is not  mapping voters
+
+    require(!voters[msg.sender]);
+
+    // require valid candidate is voting >0 and <candidatescount
+
+    require (_candidateId > 0 && _candidateId <= candidatesCount );
+
     // record that voter has voted
     voters[msg.sender] = true;
 
