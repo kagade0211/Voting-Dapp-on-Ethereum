@@ -36,7 +36,21 @@ App = {
       // Connect provider to interact with contract
       App.contracts.Election.setProvider(App.web3Provider);
       //
+      App.listenForEvents();
       return App.render();
+    });
+  },
+
+  listenForEvents: function() {
+    App.contracts.Election.deployed().then(function(instance) {
+      instance.votedEvent({}, {
+        fromBlock: 0,
+        toBlock: 'latest'
+      }).watch(function(error, event) {
+        console.log("event triggered", event)
+        // Reload when a new vote is recorded
+        App.render();
+      });
     });
   },
 //render function layout all content on page. 1. display accounts connected to blockchain 2. list out candidates in election

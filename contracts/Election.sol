@@ -18,6 +18,9 @@ contract Election {
 // constructor defination in old version of solidity. In newer version you donot need to add function keyword and functionName
 //Constructor gets called automatically once contract is migrated on blockchain.
 //smart contract is in control of candidates addition. externally we cannot add candidate
+  //voted event to get candidates already voted
+
+  
   constructor() public {
     addCandidate("Candidate 1");
     addCandidate("Candidate 2");
@@ -29,22 +32,20 @@ contract Election {
     //candidate is array and we are passing  candidateCount as array no.
     candidates[candidatesCount] = Candidate(candidatesCount, _name,0);
   }
-  function vote (uint _candidateId) public {
-    // conditions for vote that address has not voted before
-    //i.e. requires address is not  mapping voters
-
+ function vote (uint _candidateId) public {
+    // require that they haven't voted before
     require(!voters[msg.sender]);
 
-    // require valid candidate is voting >0 and <candidatescount
-
-    require (_candidateId > 0 && _candidateId <= candidatesCount );
+    // require a valid candidate
+    require(_candidateId > 0 && _candidateId <= candidatesCount);
 
     // record that voter has voted
     voters[msg.sender] = true;
 
-    //update candidate vote count
+    // update candidate vote Count
     candidates[_candidateId].voteCount ++;
 
-
-  }
+    // trigger voted event
+    votedEvent(_candidateId);
+}
 }
