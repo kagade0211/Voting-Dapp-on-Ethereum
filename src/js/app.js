@@ -97,7 +97,7 @@ render: function() {
 
 castVote: function() {
   var candidateId = $('#candidatesSelect').val();
-  App.contracts.Election.deployed().then(function(instance) {
+  App.contracts.Election.deployed().then(function(instance) 
     return instance.vote(candidateId, { from: App.account });
   }).then(function(result) {
     // Wait for votes to update
